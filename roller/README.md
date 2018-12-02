@@ -1,4 +1,4 @@
-##Overview
+## Overview
  
 "roller" is a R package that utilizes several functions in order to 
 simulate rolling an object with distinct sides.
@@ -20,7 +20,7 @@ specific roll corresponding to an index.
 a specific roll corresponding to an index with another "device" side
 - The addition method "+" adds new rolls to a "rolls" object
 
-##Installation
+## Installation
 
 Use one of these functions to install "roller" version from GitHub 
 (with or without vignette). Install "devtools" package if needed.
@@ -29,7 +29,7 @@ install.packages("devtools")
 devtools::install_github("harinandansrikanth/stat133-hws-fall18/roller")
 devtools::install_github("harinandansrikanth/stat133-hws-fall18/roller", build_vignettes = TRUE)
 
-##Usage
+## Usage
 
 knitr::opts_chunk$set(collapse = T, comment = "#>")
 library(dplyr)
