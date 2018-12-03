@@ -1,0 +1,98 @@
+---
+output: 
+  html_document:
+    html_preview: false
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = '#>', fig.path = "README-")
+```
+
+## Overview
+ 
+"roller" is a R package that utilizes several functions in order to 
+simulate rolling an object with distinct sides.
+- device() creates an object belonging to the "device" class that has 
+sides and probabilties associated with those sides
+- roll() creates an object belonging to the "rolls" class that rolls a 
+"device" a certain number of times according to its sides and 
+probabilities
+- is.device() tests whether an object belongs to the "device" class
+- print.device() prints a "device" object as a data frame with a header
+- summary.rolls() returns a summary of a "rolls" object that includes 
+the sides of its "device" parameter, the number of times each side was 
+rolled, and the proportions of the rolls on which each side was rolled.
+- plot.rolls() takes a "rolls" object and displays a barplot of the 
+frequencies of the "device" parameter's sides in the rolls.
+- The extraction method "[" returns the "device" side rolled on a 
+specific roll corresponding to an index.
+- The replacement method "[<-" replaces the "device" side rolled on 
+a specific roll corresponding to an index with another "device" side
+- The addition method "+" adds new rolls to a "rolls" object
+
+## Installation
+
+Use one of these functions to install "roller" version from GitHub 
+(with or without vignette). Install "devtools" package if needed.
+
+```{r}
+#install.packages("devtools")
+#devtools::install_github("harinandansrikanth/stat133-hws-fall18/roller")
+#devtools::install_github("harinandansrikanth/stat133-hws-fall18/roller", build_vignettes = TRUE)
+```
+## Usage
+
+```{r}
+knitr::opts_chunk$set(collapse = T, comment = "#>")
+library(devtools)
+library(dplyr)
+library(roller)
+
+#default device object
+dev1 <- device()
+dev1
+
+#non-default object
+dev2 <- device(sides = c('q','w','e'), prob = c((1/4),(1/2),(1/4)))
+dev2
+
+#rolls object
+rolls1 <- roll(dev1,5)
+rolls1
+
+#rolls object
+rolls2 <- roll(dev2,12)
+rolls2
+
+#is.device()
+is.device(device(c("a","b"),c(0.4,0.6)))
+is.device(c(0.5,0.5))
+
+#device()
+device_example <- device(sides = c("g","h","j"), prob = c(0.3,0.5,0.2))
+device_example
+print(device_example)
+
+#roll() (class of object is `rolls`, not roll)
+set.seed(123)
+rolls_example <- roll(device(sides = c(1,2,3,4), prob = c(0.1, 0.2, 0.4, 0.3)), times = 25)
+rolls_example
+
+#summary of rolls object
+summary(rolls_example)
+
+#plot
+plot(rolls_example)
+
+#extraction
+rolls_example[14]
+
+#replacement
+rolls_example[14] <- 2
+
+#rolls_example #The new rolls_example after replacement
+rolls_example[14]
+
+#addition
+rolls_example + 15
+```
